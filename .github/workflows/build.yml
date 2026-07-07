@@ -1,29 +1,31 @@
 name: Build APK
-on: [push, workflow_dispatch]
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Setup Java (using 17, standard for modern apps)
-      - name: set up JDK 17
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 2. Grant permissions & run the build tool
       - name: Make gradlew executable and build
-      run: |
-        gradle wrapper
-        chmod +x gradlew
-        ./gradlew assembleDebug
+        run: |
+          gradle wrapper
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
-    # 3. Smart upload (Finds the APK no matter where Gradle drops it)
-          - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-debug
-        path: "**/build/outputs/apk/debug/*.apk"
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: "**/build/outputs/apk/debug/*.apk"
