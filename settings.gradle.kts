@@ -23,5 +23,3 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Veloq"
-
-include(":app")
