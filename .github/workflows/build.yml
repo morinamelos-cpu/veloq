@@ -17,13 +17,13 @@ jobs:
       # 2. Grant permissions & run the build tool
       - name: Make gradlew executable and build
       run: |
-       gradle wrapper
-       chmod +x gradlew
-         ./gradlew assembleDebug
-  
-      # 3. Smart upload (Finds the APK no matter where Gradle drops it)
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug
-          path: "**/build/outputs/apk/debug/*.apk"
+        gradle wrapper
+        chmod +x gradlew
+        ./gradlew assembleDebug
+
+    # 3. Smart upload (Finds the APK no matter where Gradle drops it)
+          - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug
+        path: "**/build/outputs/apk/debug/*.apk"
