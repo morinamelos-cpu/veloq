@@ -1,0 +1,6 @@
+{
+  "name": "Veloq",
+  "description": "Veloq custom dark brutalist monolithic hardware catalog and shopping registry.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
